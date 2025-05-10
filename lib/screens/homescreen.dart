@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment_advanced/models/album.dart';
 import 'package:flutter_assignment_advanced/repo/crud.dart';
+import 'package:flutter_assignment_advanced/screens/createalbum.dart';
+import 'package:flutter_assignment_advanced/screens/viewalbum.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -18,14 +20,26 @@ class _HomeScreenState extends State<Homescreen> {
   }
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<Album>(future: futureAlbum, builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data!.title );
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } 
-        return CircularProgressIndicator();
-      }),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Viewalbum()),
+            );
+          }, child: Text('View Album'),
+        
+      ),
+      ElevatedButton(onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Createalbum()),
+        );
+      }, child: Text('Create Album'),),
+      ElevatedButton(onPressed: (){}, child: Text('Update Album'),),
+      ElevatedButton(onPressed: (){}, child: Text('Delete Album'),),],
+      ),
     );
   }
 }

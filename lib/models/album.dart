@@ -1,11 +1,13 @@
 import 'dart:convert';
+
 Album albumFromJson(String str) => Album.fromJson(json.decode(str));
 String albumToJson(Album data) => json.encode(data.toJson());
+
 class Album {
-  int userId;
+  int? userId;
   int id;
   String title;
-   Album({
+  Album({
     required this.userId,
     required this.id,
     required this.title,
@@ -24,6 +26,5 @@ class Album {
       'id': id,
       'title': title,
     };
-
   }
 }
